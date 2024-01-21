@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://lxsa52cmxew0"]
+
+[ext_resource type="ArrayMesh" uid="uid://b13cnhvr35j48" path="res://models/road_tileset/road_cross/road_cross.obj" id="1_x6ubq"]
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="2_mheaa"]
+[ext_resource type="Texture2D" uid="uid://b5w6tmmg3sy0w" path="res://models/road_tileset/road_cross/road_cross.png" id="3_a887l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3co7k"]
+render_priority = 0
+shader = ExtResource("2_mheaa")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("3_a887l")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lmd8"]
+size = Vector3(22.6152, 0.512695, 10.6826)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mimec"]
+size = Vector3(10.6719, 0.507324, 6.06836)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jpky8"]
+height = 6.12834
+radius = 0.979196
+
+[node name="RoadCross" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_x6ubq")
+surface_material_override/0 = SubResource("ShaderMaterial_3co7k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0224609, 0.243652, -0.125488)
+shape = SubResource("BoxShape3D_2lmd8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.188477, 0.246338, 8.30171)
+shape = SubResource("BoxShape3D_mimec")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.188477, 0.246338, -8.32202)
+shape = SubResource("BoxShape3D_mimec")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 8.18053, 9.53674e-07, 5.2528)
+shape = SubResource("CylinderShape3D_jpky8")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 5.16176, 9.53674e-07, 8.27157)
+shape = SubResource("CylinderShape3D_jpky8")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -5.19024, 9.53674e-07, 8.22964)
+shape = SubResource("CylinderShape3D_jpky8")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, -8.20902, 9.53674e-07, 5.21087)
+shape = SubResource("CylinderShape3D_jpky8")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, -8.27191, 9.53674e-07, -5.22905)
+shape = SubResource("CylinderShape3D_jpky8")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+transform = Transform3D(-5.73206e-15, -1.31134e-07, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, 1.31134e-07, -5.25313, 9.53674e-07, -8.24783)
+shape = SubResource("CylinderShape3D_jpky8")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="."]
+transform = Transform3D(-5.73206e-15, -1.31134e-07, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, 1.31134e-07, 5.27064, 9.53674e-07, -8.22687)
+shape = SubResource("CylinderShape3D_jpky8")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -1.74846e-07, 1, -4.37114e-08, 0, -7.64274e-15, -1.74846e-07, 1, 8.28942, 9.53674e-07, -5.20809)
+shape = SubResource("CylinderShape3D_jpky8")

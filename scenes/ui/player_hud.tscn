@@ -1,0 +1,261 @@
+[gd_scene load_steps=19 format=3 uid="uid://d3atfwrimd7hd"]
+
+[ext_resource type="Script" path="res://scripts/ui/player_hud.gd" id="1_7jncv"]
+[ext_resource type="Theme" uid="uid://m4ce8lcsgo8o" path="res://theme/default_theme.tres" id="2_ivqnv"]
+[ext_resource type="Texture2D" uid="uid://cq8r5e477me5h" path="res://textures/ui/keyboard_r.png" id="3_txj3m"]
+[ext_resource type="LabelSettings" uid="uid://cjs6u5aa3tmcp" path="res://theme/separator.tres" id="4_ss7f8"]
+[ext_resource type="Texture2D" uid="uid://cdtk5kji58eoj" path="res://textures/ui/playstation_trigger_l1_alternative.png" id="4_xykco"]
+[ext_resource type="Texture2D" uid="uid://dc24ybl7tc5ac" path="res://textures/ui/playstation_dpad_down.png" id="4_ydhbn"]
+[ext_resource type="Texture2D" uid="uid://bx1aof7hk2ns" path="res://textures/ui/keyboard_z.png" id="5_m3epm"]
+[ext_resource type="Texture2D" uid="uid://db140tjlwmrow" path="res://textures/ui/playstation_dpad_up.png" id="6_mbi3l"]
+[ext_resource type="Texture2D" uid="uid://vy8nv7kgbofr" path="res://textures/ui/keyboard_space.png" id="7_7eafu"]
+[ext_resource type="Texture2D" uid="uid://ra1mfqt7je12" path="res://textures/ui/playstation_button_color_cross.png" id="8_munml"]
+[ext_resource type="Texture2D" uid="uid://dhoays6k06fq" path="res://textures/ui/keyboard_shift.png" id="9_vr40j"]
+[ext_resource type="Texture2D" uid="uid://c47nxxroqamxv" path="res://textures/ui/keyboard_ctrl.png" id="11_lw2hi"]
+[ext_resource type="Texture2D" uid="uid://cvdh1vm5ncnfw" path="res://textures/ui/playstation_trigger_r1_alternative.png" id="12_a3nwf"]
+[ext_resource type="Texture2D" uid="uid://bn8b2fp2u3fhp" path="res://textures/ui/gear_ometer.png" id="13_n4c0d"]
+[ext_resource type="Texture2D" uid="uid://dio4d7x1mhjq6" path="res://textures/ui/speed_ometer.png" id="14_tx6hh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xir3b"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_bmtau"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_enfka"]
+font_size = 8
+
+[node name="ui" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_7jncv")
+
+[node name="debug" type="VBoxContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_ivqnv")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="debug"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="debug/HBoxContainer3"]
+layout_mode = 2
+text = "state"
+
+[node name="car_state_value" type="Label" parent="debug/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="debug"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="debug/HBoxContainer4"]
+layout_mode = 2
+text = "grip"
+
+[node name="grip_value" type="Label" parent="debug/HBoxContainer4"]
+layout_mode = 2
+
+[node name="hint" type="VBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -237.0
+offset_right = 427.0
+offset_bottom = -15.0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("2_ivqnv")
+alignment = 2
+
+[node name="engine_off" type="VBoxContainer" parent="hint"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hint/engine_off"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hint/engine_off/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_txj3m")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="hint/engine_off/HBoxContainer"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("4_ss7f8")
+
+[node name="TextureRect2" type="TextureRect" parent="hint/engine_off/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_ydhbn")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="hint/engine_off/HBoxContainer"]
+layout_mode = 2
+text = "Turn on engine"
+
+[node name="driving" type="VBoxContainer" parent="hint"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hint/driving"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hint/driving/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_m3epm")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="hint/driving/HBoxContainer"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("4_ss7f8")
+
+[node name="TextureRect2" type="TextureRect" parent="hint/driving/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_mbi3l")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="hint/driving/HBoxContainer"]
+layout_mode = 2
+text = "Change Camera"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="hint/driving"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hint/driving/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("7_7eafu")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="hint/driving/HBoxContainer2"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("4_ss7f8")
+
+[node name="TextureRect2" type="TextureRect" parent="hint/driving/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("8_munml")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="hint/driving/HBoxContainer2"]
+layout_mode = 2
+text = "Honk"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="hint/driving"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hint/driving/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("9_vr40j")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="hint/driving/HBoxContainer3"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("4_ss7f8")
+
+[node name="TextureRect2" type="TextureRect" parent="hint/driving/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_xykco")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="hint/driving/HBoxContainer3"]
+layout_mode = 2
+text = "Gear Up"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="hint/driving"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hint/driving/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("11_lw2hi")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="hint/driving/HBoxContainer4"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("4_ss7f8")
+
+[node name="TextureRect2" type="TextureRect" parent="hint/driving/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("12_a3nwf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="hint/driving/HBoxContainer4"]
+layout_mode = 2
+text = "Gear Down"
+
+[node name="hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_ivqnv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hud"]
+layout_mode = 0
+offset_left = -143.0
+offset_top = -19.0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="PanelContainer" type="MarginContainer" parent="hud/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("13_n4c0d")
+expand_mode = 3
+
+[node name="gear_value" type="Label" parent="hud/HBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_xir3b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="MarginContainer" parent="hud/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("14_tx6hh")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="hud/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hud/HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="speed_value" type="Label" parent="hud/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_bmtau")
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="hud/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "kph"
+label_settings = SubResource("LabelSettings_enfka")
+vertical_alignment = 2

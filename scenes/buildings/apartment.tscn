@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6mv2ua8pjh53"]
+
+[ext_resource type="ArrayMesh" uid="uid://d3ki7gjs26b0t" path="res://models/apartment/apartment.obj" id="1_r7y0g"]
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="2_vxwid"]
+[ext_resource type="Texture2D" uid="uid://b44h4iaojr2p8" path="res://models/apartment/apartment.png" id="3_2agbe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11muy"]
+render_priority = 0
+shader = ExtResource("2_vxwid")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("3_2agbe")
+
+[node name="Apartment" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_r7y0g")
+surface_material_override/0 = SubResource("ShaderMaterial_11muy")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.70386, -2.05612e-07)
+depth = 8.14
+polygon = PackedVector2Array(-2.29593, 2.28823, 2.29593, 2.30364, 2.28052, -2.30364, -2.32675, -2.31905)

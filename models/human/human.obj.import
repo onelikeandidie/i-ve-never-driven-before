@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5bwrawmexc68"
+path="res://.godot/imported/human.obj-061cdad5ac28602b573b99b6c482b344.mesh"
+
+[deps]
+
+files=["res://.godot/imported/human.obj-061cdad5ac28602b573b99b6c482b344.mesh"]
+
+source_file="res://models/human/human.obj"
+dest_files=["res://.godot/imported/human.obj-061cdad5ac28602b573b99b6c482b344.mesh", "res://.godot/imported/human.obj-061cdad5ac28602b573b99b6c482b344.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmbq61xsoml1c"]
+
+[ext_resource type="ArrayMesh" uid="uid://cdcgnarqmrkf1" path="res://models/tree/tree.obj" id="1_y6kp5"]
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="2_vx8gr"]
+[ext_resource type="Texture2D" uid="uid://co84w1x77nh57" path="res://models/tree/tree.png" id="3_ds85f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imp2x"]
+render_priority = 0
+shader = ExtResource("2_vx8gr")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("3_ds85f")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ogtb"]
+size = Vector3(0.103699, 1.42859, 0.11322)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4dinl"]
+size = Vector3(2.37982, 1.11707, 2.07123)
+
+[node name="Tree" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_y6kp5")
+surface_material_override/0 = SubResource("ShaderMaterial_imp2x")
+surface_material_override/1 = SubResource("ShaderMaterial_imp2x")
+surface_material_override/2 = SubResource("ShaderMaterial_imp2x")
+surface_material_override/3 = SubResource("ShaderMaterial_imp2x")
+surface_material_override/4 = SubResource("ShaderMaterial_imp2x")
+surface_material_override/5 = SubResource("ShaderMaterial_imp2x")
+surface_material_override/6 = SubResource("ShaderMaterial_imp2x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00100708, 0.837989, 0.00210571)
+shape = SubResource("BoxShape3D_4ogtb")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.163666, 2.2159, 0.0218811)
+shape = SubResource("BoxShape3D_4dinl")

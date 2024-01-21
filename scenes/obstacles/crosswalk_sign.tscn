@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdajem7602lk4"]
+
+[ext_resource type="ArrayMesh" uid="uid://nnm5462ipimf" path="res://models/crosswalk_sign/crosswalk_sign.obj" id="1_iqjjk"]
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="2_0d73r"]
+[ext_resource type="Texture2D" uid="uid://dlqanaskr3l0q" path="res://models/crosswalk_sign/crosswalk_sign.png" id="3_u7otn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2popg"]
+render_priority = 0
+shader = ExtResource("2_0d73r")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("3_u7otn")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qfixo"]
+points = PackedVector3Array(0.0295636, 2.91732, -0.105065, -0.533565, 1.70112, -0.105065, -0.533565, 1.70112, -0.0149579, 0.52532, 1.70112, -0.105065, 0.0520556, 2.26435, 0.0526415, 0.52532, 1.70112, -0.0149579, -0.0153167, 2.91732, -0.0149579, 0.52532, 2.12912, -0.0149579, -0.533565, 2.12912, -0.0149579, -0.0379123, 1.67844, 0.0526415, -0.45793, 2.15323, -0.0938, 0.449685, 2.15323, -0.0938, -0.0379123, 2.26435, 0.0526415, -0.0379123, 2.89489, -0.105065, 0.0295636, 2.91732, -0.0149579, 0.0520556, 1.67844, 0.0526415, -0.173071, 2.6921, -0.0149579, 0.435145, 2.28691, -0.0149579, -0.0379123, 2.89489, -0.0149579, 0.502724, 2.17424, -0.0149579, -0.0153167, 2.91732, -0.105065, 0.430317, 2.1919, -0.0938, -0.37581, 2.37678, -0.0149579)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b4y48"]
+points = PackedVector3Array(0.0522011, 1.67844, 0.0526415, -0.0379167, -0.0112647, -0.0374764, -0.0379167, -0.0112647, 0.0526415, -0.040069, 1.7188, -0.0396287, 0.0522011, -0.0112647, -0.0374764, 0.0543534, 1.7188, -0.0396287, -0.0379167, 1.67844, 0.0526415, 0.0522011, -0.0112647, 0.0526415)
+
+[node name="CrosswalkSign" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_iqjjk")
+surface_material_override/0 = SubResource("ShaderMaterial_2popg")
+surface_material_override/1 = SubResource("ShaderMaterial_2popg")
+
+[node name="@CollisionShape3D@514435" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_qfixo")
+
+[node name="@CollisionShape3D@514434" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_b4y48")

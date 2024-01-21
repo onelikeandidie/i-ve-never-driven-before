@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjvtx47aacg4a"]
+
+[ext_resource type="ArrayMesh" uid="uid://cdmcaw4hrcvfn" path="res://models/building_with_ads/building_with_ads.obj" id="1_l8mst"]
+[ext_resource type="Material" uid="uid://dk61q1h6t2loh" path="res://models/building_with_ads/building_with_ads_material.tres" id="2_0003d"]
+
+[node name="BuildingWithAds" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_l8mst")
+surface_material_override/0 = ExtResource("2_0003d")
+surface_material_override/1 = ExtResource("2_0003d")
+surface_material_override/2 = ExtResource("2_0003d")
+surface_material_override/3 = ExtResource("2_0003d")
+surface_material_override/4 = ExtResource("2_0003d")
+surface_material_override/5 = ExtResource("2_0003d")
+surface_material_override/6 = ExtResource("2_0003d")
+surface_material_override/7 = ExtResource("2_0003d")
+surface_material_override/8 = ExtResource("2_0003d")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.7536, -1.64075e-07)
+depth = 6.745
+polygon = PackedVector2Array(0.0249895, 2.31617, -2.30177, 2.30076, -2.33258, -2.27571, 2.30552, -2.29112, 2.33633, 0.0202303)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00043635, 1, 0, -1, -0.00043635, -0.0630643, 6.88835, -2.77531)
+spot_range = 10.1193

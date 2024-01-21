@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://skrdqdv0rqok"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0cmkk48n06oa" path="res://models/shop/shop.obj" id="1_4x0t1"]
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="2_er5pc"]
+[ext_resource type="Texture2D" uid="uid://b853v0ej0pguj" path="res://models/shop/shop.png" id="3_x2fcp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d27w"]
+render_priority = 0
+shader = ExtResource("2_er5pc")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("3_x2fcp")
+
+[node name="Shop" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4x0t1")
+surface_material_override/0 = SubResource("ShaderMaterial_4d27w")
+surface_material_override/1 = SubResource("ShaderMaterial_4d27w")
+surface_material_override/2 = SubResource("ShaderMaterial_4d27w")
+surface_material_override/3 = SubResource("ShaderMaterial_4d27w")
+surface_material_override/4 = SubResource("ShaderMaterial_4d27w")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.28322, -9.98027e-08)
+depth = 3.395
+polygon = PackedVector2Array(-1.8524, 2.32557, -2.37675, 1.83034, -2.37675, -2.31593, 2.44924, -2.30622, 2.44924, 1.82063, 1.85692, 2.32557)

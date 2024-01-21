@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://m4ce8lcsgo8o"]
+
+[ext_resource type="FontFile" uid="uid://bi6x2ja2lwt37" path="res://fonts/IsamiRiDisplayBold.ttf" id="1_fl7up"]
+
+[resource]
+default_font = ExtResource("1_fl7up")
+default_font_size = 24

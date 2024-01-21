@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cfomx3vyasgv4"]
+
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="1_1qss3"]
+[ext_resource type="Texture2D" uid="uid://cgo6gjou4416n" path="res://models/pedestrian/pedestrian_texture.png" id="2_yel7c"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1qss3")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("2_yel7c")

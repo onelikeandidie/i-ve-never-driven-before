@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpx82kucgoqoe"]
+
+[ext_resource type="ArrayMesh" uid="uid://baygm2lsj1cwi" path="res://models/road_tileset/road_square/road.obj" id="1_gevyu"]
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="2_cr16n"]
+[ext_resource type="Texture2D" uid="uid://cv2sunk4int85" path="res://models/road_tileset/road_square/road.png" id="3_ylrkj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ka5mg"]
+render_priority = 0
+shader = ExtResource("2_cr16n")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("3_ylrkj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxiip"]
+size = Vector3(10.1653, 1, 11.3489)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n2v5y"]
+height = 11.3735
+radius = 1.01816
+
+[node name="RoadSquare" type="StaticBody3D"]
+transform = Transform3D(0.97, 0, 0, 0, 0.97, 0, 0, 0, 0.97, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_gevyu")
+surface_material_override/0 = SubResource("ShaderMaterial_ka5mg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14563, 0, -0.0469971)
+shape = SubResource("BoxShape3D_hxiip")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.35789, 0, 0)
+shape = SubResource("CylinderShape3D_n2v5y")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.34849, 0, 0)
+shape = SubResource("CylinderShape3D_n2v5y")

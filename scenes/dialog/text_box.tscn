@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqf1ruq0f8u6u"]
+
+[ext_resource type="Script" path="res://scripts/dialog/text_box.gd" id="1_cfh64"]
+[ext_resource type="Texture2D" uid="uid://dmtmbko0y0or1" path="res://textures/nine_patch_dialog.png" id="1_ump7d"]
+[ext_resource type="Theme" uid="uid://m4ce8lcsgo8o" path="res://theme/default_theme.tres" id="2_q1trt"]
+[ext_resource type="Texture2D" uid="uid://bwaf50tw81s2" path="res://textures/ui/keyboard_e.png" id="4_dfaak"]
+[ext_resource type="Texture2D" uid="uid://ra1mfqt7je12" path="res://textures/ui/playstation_button_color_cross.png" id="5_2rrrk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hrpfe"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44qnp"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[node name="TextBox" type="VBoxContainer"]
+offset_right = 132.0
+offset_bottom = 38.0
+size_flags_horizontal = 8
+script = ExtResource("1_cfh64")
+
+[node name="inner_box" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="inner_box"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_ump7d")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="inner_box"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_q1trt")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="displayed_text" type="Label" parent="inner_box/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_q1trt")
+label_settings = SubResource("LabelSettings_hrpfe")
+
+[node name="hint_box" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="hint_box"]
+layout_mode = 2
+offset_left = -70.0
+offset_top = -11.0
+offset_right = -6.0
+offset_bottom = 19.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_44qnp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hint_box/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="hint_box/PanelContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_q1trt")
+texture = ExtResource("4_dfaak")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="hint_box/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "/"
+
+[node name="TextureRect2" type="TextureRect" parent="hint_box/PanelContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("5_2rrrk")
+expand_mode = 2
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="sound_player" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="sound_player" to="." method="_on_sound_player_finished"]

@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dethyocmjs22v"]
+
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="1_v2ic6"]
+[ext_resource type="Texture2D" uid="uid://bmbkc45w0rnl" path="res://models/car/car_toyota.png" id="2_f7cmh"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v2ic6")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("2_f7cmh")

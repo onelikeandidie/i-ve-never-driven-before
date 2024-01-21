@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bngqt45jgy0vc"]
+
+[ext_resource type="Script" path="res://scripts/ai/pedestrian.gd" id="1_4qcb3"]
+[ext_resource type="PackedScene" uid="uid://b3xslahrcrs3y" path="res://models/pedestrian/pedestrian.tscn" id="2_7y68g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f2wfk"]
+radius = 0.800592
+height = 3.59638
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yj4kw"]
+size = Vector3(2.94417, 3.76074, 2.96979)
+
+[node name="Pedestrian" type="CharacterBody3D"]
+script = ExtResource("1_4qcb3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93304, 0)
+shape = SubResource("CapsuleShape3D_f2wfk")
+disabled = true
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="pedestrian" parent="Body" instance=ExtResource("2_7y68g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44802, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.06021, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.098381, -1.025, 0.0116272)
+shape = SubResource("BoxShape3D_yj4kw")
+
+[node name="nav_agent" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="navigation_finished" from="nav_agent" to="." method="_on_nav_agent_navigation_finished"]
+[connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,126 @@
+[gd_scene load_steps=16 format=3 uid="uid://fpl04wt26k7s"]
+
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="1_fbhag"]
+[ext_resource type="Texture2D" uid="uid://cb4dpbq28xfk7" path="res://textures/test_texture.png" id="2_dv3mx"]
+[ext_resource type="PackedScene" uid="uid://bfi3lwgyyqi6b" path="res://scenes/test_car.tscn" id="3_4cg2k"]
+[ext_resource type="Script" path="res://scripts/test_car.gd" id="4_qvsb8"]
+[ext_resource type="PackedScene" uid="uid://c2diwyeihmn86" path="res://scenes/test_car_toyota.tscn" id="5_bkupf"]
+[ext_resource type="Script" path="res://scripts/camera_rig.gd" id="5_eob3b"]
+[ext_resource type="PackedScene" uid="uid://ml233ih3nbr4" path="res://scenes/characters/instructor.tscn" id="7_hf0li"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vl1l0"]
+render_priority = 0
+shader = ExtResource("1_fbhag")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("2_dv3mx")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fa31n"]
+material = SubResource("ShaderMaterial_vl1l0")
+size = Vector3(4, 4, 4)
+subdivide_width = 4
+subdivide_height = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_idq7l"]
+size = Vector3(4.00983, 3.75439, 4.04016)
+
+[sub_resource type="Environment" id="Environment_8rvib"]
+background_mode = 1
+background_color = Color(0.14902, 0.14902, 0.14902, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ls21"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmd2x"]
+render_priority = 0
+shader = ExtResource("1_fbhag")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("2_dv3mx")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dqek6"]
+material = SubResource("ShaderMaterial_lmd2x")
+size = Vector2(100, 100)
+subdivide_width = 16
+subdivide_depth = 16
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fs515"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PlaceholderBuilding" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6033, 2.06091, -3.62098)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlaceholderBuilding"]
+mesh = SubResource("BoxMesh_fa31n")
+skeleton = NodePath("../../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlaceholderBuilding"]
+shape = SubResource("BoxShape3D_idq7l")
+
+[node name="PlaceholderBuilding2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44257, 2.06091, 15.3187)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlaceholderBuilding2"]
+mesh = SubResource("BoxMesh_fa31n")
+skeleton = NodePath("../../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlaceholderBuilding2"]
+shape = SubResource("BoxShape3D_idq7l")
+
+[node name="PlaceholderBuilding3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.82499, 2.06091, -6.6112)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlaceholderBuilding3"]
+mesh = SubResource("BoxMesh_fa31n")
+skeleton = NodePath("../../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlaceholderBuilding3"]
+shape = SubResource("BoxShape3D_idq7l")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8rvib")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_1ls21")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_dqek6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_fs515")
+
+[node name="TestCar" parent="." instance=ExtResource("3_4cg2k")]
+transform = Transform3D(-0.569007, 0, 0.822333, 0, 1, 0, -0.822333, 0, -0.569007, -4.05793, 1.34056, 22.9136)
+
+[node name="camera_rig" type="Node3D" parent="." node_paths=PackedStringArray("following") groups=["camera"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, -6)
+script = ExtResource("5_eob3b")
+following = NodePath("../ToyotaCorolla")
+offset = Vector3(0, 5, -6)
+
+[node name="Camera3D" type="Camera3D" parent="camera_rig"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.719333, -0.392497, 0.573155, -0.0607758, 0.786358, 0.614774, -0.692002, -0.477061, 0.541799, 10.5177, 6.16144, 0)
+light_energy = 0.695
+
+[node name="ToyotaCorolla" parent="." instance=ExtResource("5_bkupf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9824, 0, 1.1342)
+script = ExtResource("4_qvsb8")
+MAX_STEER = 0.4
+
+[node name="instructor" parent="ToyotaCorolla" instance=ExtResource("7_hf0li")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09409, 2.19515, 0)

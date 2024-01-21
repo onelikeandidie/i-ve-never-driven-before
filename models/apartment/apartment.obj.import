@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d3ki7gjs26b0t"
+path="res://.godot/imported/apartment.obj-44d16473dd230829cec4994e28623574.mesh"
+
+[deps]
+
+files=["res://.godot/imported/apartment.obj-44d16473dd230829cec4994e28623574.mesh"]
+
+source_file="res://models/apartment/apartment.obj"
+dest_files=["res://.godot/imported/apartment.obj-44d16473dd230829cec4994e28623574.mesh", "res://.godot/imported/apartment.obj-44d16473dd230829cec4994e28623574.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://to66fhu3af7s"]
+
+[ext_resource type="ArrayMesh" uid="uid://c7w70s5efd2lr" path="res://models/stop_sign/stop_sign.obj" id="1_xsk2f"]
+[ext_resource type="Shader" path="res://shaders/psx_lit.gdshader" id="2_iwfl4"]
+[ext_resource type="Texture2D" uid="uid://bwvq0fe7cbh76" path="res://models/stop_sign/stop_sign.png" id="3_blrqo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2x4jv"]
+render_priority = 0
+shader = ExtResource("2_iwfl4")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("3_blrqo")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o4q5l"]
+points = PackedVector3Array(0.455837, 2.37936, -0.114137, -0.520337, 1.8101, -0.114137, -0.276138, 1.5661, -0.114137, -0.032043, 1.48462, 0.0485611, -0.235456, 2.58262, 0.00787058, 0.537202, 1.85084, 0.00787058, 0.211742, 1.52547, -0.114137, -0.235456, 2.58262, -0.114137, 0.252424, 2.58262, 0.00787058, -0.520337, 2.29799, 0.00787058, 0.0490116, 2.25736, 0.0485611, -0.520337, 1.8101, 0.00787058, 0.537202, 1.85084, -0.114137, 0.537202, 2.29799, 0.00787058, -0.520337, 2.29799, -0.114137, 0.252424, 2.58262, -0.114137, 0.211742, 1.52547, 0.00787058, -0.235456, 1.52547, 0.00787058, 0.537202, 2.29799, -0.114137, 0.0490116, 1.48462, 0.0485611, -0.235456, 1.52547, -0.114137, 0.0490116, 1.48462, -0.0327881, -0.032043, 1.48462, -0.0327881)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hglvs"]
+points = PackedVector3Array(0.0491071, 1.48462, 0.0485611, -0.030754, 0.0073371, -0.0313, -0.0322421, -0.02019, 0.0485611, 0.0491071, -0.02019, -0.0327881, -0.030754, 1.4571, -0.0313, 0.0491071, -0.02019, 0.0485611, -0.0322421, 1.48462, 0.0485611, 0.0491071, 1.48462, -0.0327881)
+
+[node name="StopSign" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xsk2f")
+surface_material_override/0 = SubResource("ShaderMaterial_2x4jv")
+surface_material_override/1 = SubResource("ShaderMaterial_2x4jv")
+
+[node name="@CollisionShape3D@516616" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_o4q5l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_hglvs")
