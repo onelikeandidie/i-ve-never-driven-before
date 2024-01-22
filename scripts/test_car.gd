@@ -1,8 +1,8 @@
 extends VehicleBody3D
 
 @export var MAX_STEER = 0.8
-@export var ENGINE_POWER: Array[int] = [0, 120, 170, 300, 400]
-@export var MINIUMIN_SPEED: Array[int] = [0, 0, 8, 16, 32]
+@export var ENGINE_POWER: Array[int]   = [0, 200, 300, 400, 500]
+@export var MINIUMIN_SPEED: Array[int] = [0,   0,   8,  16,  32]
 @export var base_grip = 10.4;
 @export var grip_multiplier = -0.1;
 
@@ -34,8 +34,10 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	engine_sound_player.finished.connect(_on_engine_sound_player_finished)
 
-func _update_grip():
-	current_grip = 1 + grip_multiplier * gear;
+func _update_grip(grip_multiplier = null):
+	if grip_multiplier == null:
+		grip_multiplier = self.grip_multiplier
+	current_grip = 1 + grip_multiplier * gear
 	wheels["front_left"].wheel_friction_slip = base_grip + base_grip * current_grip
 	wheels["front_right"].wheel_friction_slip = base_grip + base_grip * current_grip
 	wheels["back_left"].wheel_friction_slip = base_grip + base_grip * current_grip * 0.8
@@ -62,8 +64,11 @@ func _physics_process(delta):
 		return
 	var speed = abs(linear_velocity.length());
 	steering = move_toward(steering, Input.get_axis("steer_right", "steer_left") * MAX_STEER, delta * 2.5)
+	var power = Input.get_axis("backward", "forward") * ENGINE_POWER[gear];
 	if MINIUMIN_SPEED[gear] < speed:
-		engine_force = Input.get_axis("backward", "forward") * ENGINE_POWER[gear]
+		engine_force = power
+	else:
+		engine_force = power - power * (gear * 0.2)
 
 func gear_down():
 	gear -= 1
@@ -79,6 +84,16 @@ func gear_up():
 		return
 	_update_grip()
 
+func start_breaking():
+	brake = 20
+	_update_grip(-0.5)
+	pass
+
+func stop_breaking():
+	brake = 0
+	_update_grip()
+	pass
+
 func _input(event):
 	if event.is_action_pressed("gear_down"):
 		gear_down()
@@ -87,6 +102,10 @@ func _input(event):
 	if event.is_action_pressed("honk"):
 		car_honk_player.stream = car_honk
 		car_honk_player.play()
+	if event.is_action_pressed("break"):
+		start_breaking()
+	if event.is_action_released("break"):
+		stop_breaking()
 	if state == "idle" && event.is_action_pressed("start_car"):
 		state = "engine_started"
 		engine_sound_player.stream = car_engine_start
